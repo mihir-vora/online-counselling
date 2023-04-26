@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container prdct bor-r-5 mb-4" style="margin-top: 100px;">
+    <h1 style="margin: 30px 0;border-bottom: 5px solid #ffe3d8;display: inline-block;">Book an Appointment</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-6">
+                <label for="date-time-picker" class="form-label">Select The Date and Time</label>
+            </div>
+            <div class="col-3">
+                <input type="date" name="date-time" id="date-time-picker" class="form-control">
+            </div>
+            <div class="col-3">
+                <input type="time" name="date-time" id="date-time-picker" class="form-control" min="{{consultant.start_time }}:00" max="{{consultant.end_time }}:00">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-6">
+                <label for="remark" class="form-label">Remark</label>
+            </div>
+            <div class="col-6">
+                <textarea name="remark" id="remark" class="form-control"></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-lg btn-outline-success">Book Appointment</button>
+    </form>
+
+</div>
+
+
+
+{% endblock %} {% block head %}
+<style>
+    .bg-light {
+        background-color: #ffe3d8 !important;
+    }
+</style>
+{% endblock %}

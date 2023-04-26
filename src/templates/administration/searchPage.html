@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% load static %} {% block content %} {% if consultants %}
+<div class="row">
+    <div class="col-12 m-3">
+        <form action="/search_category" method="post">
+            {% csrf_token %}
+            <div class="" style="display:flex;justify-content: center;">
+                <div class="form-group mx-3" style="width: 300px;">
+                    <input type="text" class="form-control" name="types" id="" aria-describedby="helpId" placeholder="Enter Your Query">
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="search">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="block_container container">
+
+
+    {% for consultant in consultants %}
+    <a href="{% url 'view_consultant' consultant.id %}" style="text-decoration: none; color: inherit;">
+        <div class="block_container__indi">
+            <div class="block_container__indi--img">
+                <img class="image" src="{% static 'images/doc3.jpg' %}" alt="doc1" srcset="">
+            </div>
+            <p class="block_container__indi--name"><span class="bold">Name:-</span>{{ consultant.user.first_name }} {{ consultant.user.last_name }}</p>
+            <p class="block_container__indi--place"><span class="bold">Profession:-</span>{{ consultant.type_of_consultant }}</p>
+            <p class="block_container__indi--place"><span class="bold">expertise:-</span>{{ consultant.expertise }}</p>
+        </div>
+    </a>
+    {% endfor %}
+
+
+</div>
+<!-- <div class="input-group mt-4" style="z-index: 0;">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        <button type="button" class="btn btn-outline-primary">search</button>
+    </div> -->
+
+{% else %}
+<div class="text-center" style="margin-top:45px;">
+    <h3>No Consultants Exist</h3>
+</div>
+
+{% endif %} {% endblock %} {% block head %}
+<style>
+    .bg-light {
+        background-color: #ffe3d8 !important;
+    }
+</style>
+{% endblock %}

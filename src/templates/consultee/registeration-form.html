@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container" style="padding: 50px;">
+    <div class="row card" style="padding: 40px;box-shadow: 0px 0px 10px black;">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="col-12">
+                {% for form in user_form %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">
+				   {{ form.label_tag }}
+				 </label> {{ form }}
+                </div>
+                {% endfor %} {% for form in consultee_form %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">
+				   {{ form.label_tag }}
+				 </label> {{ form }}
+                </div>
+                {% endfor %}
+
+            </div>
+            <button type="submit" class="btn btn-outline-success">Register</button>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
